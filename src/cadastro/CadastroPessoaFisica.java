@@ -1,13 +1,17 @@
 package cadastro;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JRadioButton;
 
 
@@ -19,6 +23,12 @@ public class CadastroPessoaFisica extends JFrame{
 	JRadioButton[] rdnSexo =  new JRadioButton[2];
 	ButtonGroup btnGrupo = new ButtonGroup();
 	
+	MaskFormatter formatCEP = null;
+	MaskFormatter formatTel = null;
+	MaskFormatter formatCel = null;
+	MaskFormatter formatRG = null;
+	MaskFormatter formatCPF = null;
+	
 	public CadastroPessoaFisica(){
 		super ("Cadastro de Pessoa Física");
 		
@@ -28,13 +38,18 @@ public class CadastroPessoaFisica extends JFrame{
 		JTextField txtNome = new JTextField (); 
 		JTextField txtEndereco = new JTextField (); 
 		JTextField txtBairro = new JTextField (); 
-		JTextField txtCEP = new JTextField (); 
-		JTextField txtCidade = new JTextField (); 
-		JTextField txtEstado = new JTextField (); 
-		JTextField txtTelefone = new JTextField (); 
-		JTextField txtCelular = new JTextField (); 
-		JTextField txtRG = new JTextField (); 
-		JTextField txtCPF = new JTextField (); 
+		
+		JFormattedTextField txtCEP = null;
+		
+		JTextField txtCidade = new JTextField ();
+		
+		JFormattedTextField txtTelefone = null;
+		
+		JFormattedTextField txtCelular = null; 
+		
+		JFormattedTextField txtRG = null;
+		
+		JFormattedTextField txtCPF = null; 
 		
 		JLabel lblNome = new JLabel();
 		JLabel lblEndereco = new JLabel();
@@ -74,51 +89,95 @@ public class CadastroPessoaFisica extends JFrame{
 		painel.add(txtBairro);
 		txtBairro.setBounds(120,120,300,30);
 		
+			try{
+				formatCEP = new MaskFormatter("#####-###");
+				txtCEP = new JFormattedTextField(formatCEP);
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
+		
 		painel.add(txtCEP);
 		txtCEP.setBounds(120,160,200,30);
 		
 		painel.add(txtCidade);
 		txtCidade.setBounds(120,200,300,30);
 		
+		//ComboBox - Estado 
+		
 		painel.add(cboEstado);
 		cboEstado.setBounds(120,240,150,30);
-		cboEstado.addItem("Acre");
-		cboEstado.addItem("Alagoas");
-		cboEstado.addItem("Amapá");
-		cboEstado.addItem("Amazonas");
-		cboEstado.addItem("Bahia");
-		cboEstado.addItem("Ceará");
-		cboEstado.addItem("Distrito Federal");
-		cboEstado.addItem("Espírito Santo");
-		cboEstado.addItem("Goiás");
-		cboEstado.addItem("Maranhão");
-		cboEstado.addItem("Mato Grosso");
-		cboEstado.addItem("Mato Grosso do Sul");
-		cboEstado.addItem("Minas Gerais");
-		cboEstado.addItem("Pará");
-		cboEstado.addItem("Paraíba");
-		cboEstado.addItem("Paraná");
-		cboEstado.addItem("Pernambuco");
-		cboEstado.addItem("Rio de Janeiro");
-		cboEstado.addItem("Rio Grande do Norte");
-		cboEstado.addItem("Rio Grande do Sul");
-		cboEstado.addItem("Rondônia");
-		cboEstado.addItem("Roraima");
-		cboEstado.addItem("Santa Catarina");
-		cboEstado.addItem("São Paulo");
-		cboEstado.addItem("Sergipe");
-		cboEstado.addItem("Tocantins");
+			cboEstado.addItem("Acre");
+			cboEstado.addItem("Alagoas");
+			cboEstado.addItem("Amapá");
+			cboEstado.addItem("Amazonas");
+			cboEstado.addItem("Bahia");
+			cboEstado.addItem("Ceará");
+			cboEstado.addItem("Distrito Federal");
+			cboEstado.addItem("Espírito Santo");
+			cboEstado.addItem("Goiás");
+			cboEstado.addItem("Maranhão");
+			cboEstado.addItem("Mato Grosso");
+			cboEstado.addItem("Mato Grosso do Sul");
+			cboEstado.addItem("Minas Gerais");
+			cboEstado.addItem("Pará");
+			cboEstado.addItem("Paraíba");
+			cboEstado.addItem("Paraná");
+			cboEstado.addItem("Pernambuco");
+			cboEstado.addItem("Rio de Janeiro");
+			cboEstado.addItem("Rio Grande do Norte");
+			cboEstado.addItem("Rio Grande do Sul");
+			cboEstado.addItem("Rondônia");
+			cboEstado.addItem("Roraima");
+			cboEstado.addItem("Santa Catarina");
+			cboEstado.addItem("São Paulo");
+			cboEstado.addItem("Sergipe");
+			cboEstado.addItem("Tocantins");
 
+		//TXTCELULAR - Com MaskFormatter	
+			
+			try{
+				formatTel = new MaskFormatter(" (##)####-#### ");
+				txtTelefone = new JFormattedTextField(formatTel);
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
 		
 		painel.add(txtTelefone);
 		txtTelefone.setBounds(120,280,200,30);
 		
+		//TXTCELULAR - Com MaskFormatter	
+		
+			try{
+				formatCel = new MaskFormatter(" (##)#####-#### ");
+				txtCelular = new JFormattedTextField(formatCel);
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
+		
 		painel.add(txtCelular);
 		txtCelular.setBounds(120,320,200,30);
+		
+		//TXTRG - Com MaskFormatter	
+		
+			try{
+				formatRG = new MaskFormatter("##.###.###-A");
+				txtRG = new JFormattedTextField(formatRG);
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
 		
 		painel.add(txtRG);
 		txtRG.setBounds(120,360,200,30);
 		
+		//TXTCPF - Com MaskFormatter	
+		
+			try{
+				formatCPF = new MaskFormatter("###.###.###-##");
+				txtCPF = new JFormattedTextField(formatCPF);
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
+			
 		painel.add(txtCPF);
 		txtCPF.setBounds(120,400,200,30);
 		
@@ -182,11 +241,21 @@ public class CadastroPessoaFisica extends JFrame{
 		
 		painel.add(btnLimpar);
 		btnLimpar.setBounds(320, 500, 100, 40);
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				cboEstado.setSelectedItem("Null");
+				txtNome.setText("");
+				txtEndereco.setText("");
+				txtBairro.setText("");
+				txtCidade.setText("");
+				}
+			});
 		
-	
+		//PAINEL SET
+		
 		painel.setLayout(null);
 		this.setVisible(true);
-		this.setSize(600, 800);
+		this.setSize(600, 650);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
