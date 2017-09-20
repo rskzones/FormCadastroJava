@@ -1,4 +1,4 @@
-package cadastro;
+package view;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -12,11 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+
+import view.CadastroPessoaFisica;
+
 import javax.swing.JRadioButton;
-
-
-
-import cadastro.CadastroPessoaFisica;
 
 public class CadastroPessoaFisica extends JFrame{
 	
@@ -74,8 +73,8 @@ public class CadastroPessoaFisica extends JFrame{
 		btnGrupo.add(rdnSexo[1]);
 		
 		
-		JButton btnEnviar = new JButton("Enviar");
-		JButton btnLimpar = new JButton("Limpar");
+		JButton btnSalvar = new JButton("Salvar");
+		JButton btnImprimir = new JButton("Imprimir");
 
 		
 		//TEXT FIELD - CAMPOS
@@ -236,20 +235,12 @@ public class CadastroPessoaFisica extends JFrame{
 	    
 		// Buttons
 		
-		painel.add(btnEnviar);
-		btnEnviar.setBounds(200, 500, 100, 40);
+		painel.add(btnSalvar);
+		btnSalvar.setBounds(200, 500, 100, 40);
 		
-		painel.add(btnLimpar);
-		btnLimpar.setBounds(320, 500, 100, 40);
-		btnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				cboEstado.setSelectedItem("Null");
-				txtNome.setText("");
-				txtEndereco.setText("");
-				txtBairro.setText("");
-				txtCidade.setText("");
-				}
-			});
+		painel.add(btnImprimir);
+		btnImprimir.setBounds(320, 500, 100, 40);
+			
 		
 		//PAINEL SET
 		
