@@ -28,6 +28,8 @@ public class CadastroPessoaFisica extends JFrame{
 	MaskFormatter formatRG = null;
 	MaskFormatter formatCPF = null;
 	
+	model.CadastroPessoaFisica PessoaFisica = new model.CadastroPessoaFisica();
+	
 	public CadastroPessoaFisica(){
 		super ("Cadastro de Pessoa Física");
 		
@@ -237,6 +239,20 @@ public class CadastroPessoaFisica extends JFrame{
 		
 		painel.add(btnSalvar);
 		btnSalvar.setBounds(200, 500, 100, 40);
+		btnSalvar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PessoaFisica.setNome(txtNome.getText());
+				PessoaFisica.setEndereco(txtEndereco.getText());
+				PessoaFisica.setBairro(txtBairro.getText());
+				//PessoaFisica.setCep(txtCEP.getText());
+				PessoaFisica.setCidade(txtCidade.getText());
+				//PessoaFisica.setTelefone(txtTelefone.getText());
+				//PessoaFisica.setCelular(txtCelular.getText());
+				//PessoaFisica.setRg(txtRG.getText());
+				//PessoaFisica.setCpf(txtCPF.getText());
+			}
+		});
 		
 		painel.add(btnImprimir);
 		btnImprimir.setBounds(320, 500, 100, 40);
